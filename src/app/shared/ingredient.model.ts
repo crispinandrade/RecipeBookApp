@@ -1,3 +1,4 @@
+// TypeScript automatically gives properties and assign values
 export class Ingredient {
     // public name: string;
     // public amount: number;

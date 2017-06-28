@@ -1,8 +1,11 @@
 <div class="row">
+  <h1>Shopping List</h1><hr>
   <div class="col-xs-10">
-    <app-shopping-edit></app-shopping-edit>
+    <app-shopping-edit
+      (ingredientAdded)="onIngredientAdded($event)"></app-shopping-edit>
     <hr>
     <ul class="list-group">
+      <h3>Shopping List Group</h3>
       <!--removed href for button-like element without a reference-->
       <a 
         class="list-group-item" 
