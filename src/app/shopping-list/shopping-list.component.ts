@@ -20,7 +20,9 @@ export class ShoppingListComponent implements OnInit {
   ngOnInit() {
   }
 
+  // Ingredient is the data passed from $event with name and amount
   onIngredientAdded(ingredient: Ingredient){
+    // add the new ingredient to the ingredients array
     this.ingredients.push(ingredient);
   }
 

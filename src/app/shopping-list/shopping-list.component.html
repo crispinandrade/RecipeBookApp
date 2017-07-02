@@ -1,6 +1,8 @@
 <div class="row">
   <h1>Shopping List</h1><hr>
   <div class="col-xs-10">
+    <!--Passing data to onIngredientAdded with $event
+    $event is an 'Ingredient' with 'name' and 'amount'-->
     <app-shopping-edit
       (ingredientAdded)="onIngredientAdded($event)"></app-shopping-edit>
     <hr>

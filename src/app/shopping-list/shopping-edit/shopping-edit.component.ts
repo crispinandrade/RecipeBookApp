@@ -8,9 +8,10 @@ import { Component, ElementRef, EventEmitter, OnInit, ViewChild, Output } from '
   styleUrls: ['./shopping-edit.component.css']
 })
 export class ShoppingEditComponent implements OnInit {
+  // Get elements by their local reference
   @ViewChild('nameInput') nameInputRef: ElementRef;
   @ViewChild('amountInput') amountInputRef: ElementRef;
-  // event emitter to the shopping-list.component
+  // Emit an event to the shopping-list.component
   @Output() ingredientAdded = new EventEmitter<Ingredient>()
 
   constructor() { }
@@ -25,5 +26,4 @@ export class ShoppingEditComponent implements OnInit {
     const newIngredient = new Ingredient(ingName, ingAmount);
     this.ingredientAdded.emit(newIngredient);
   }
-
 }
