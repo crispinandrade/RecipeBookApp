@@ -1,4 +1,5 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs/Rx';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { Ingredient } from './../shared/ingredient.model';
 import { Recipe } from './recipe.model';
@@ -6,7 +7,9 @@ import { Recipe } from './recipe.model';
 @Injectable()
 // RecipeService will manage the recipes
 export class RecipeService {
-    recipeSelected = new EventEmitter<Recipe>()
+    // Subject will pass an array of recipes as a value
+    recipesChanged = new Subject<Recipe[]>();
+
     // 'recipes' holds an array of Recipe objects
     private recipes: Recipe[] = [
         new Recipe(
@@ -15,10 +18,10 @@ export class RecipeService {
             'http://static.kidspot.com.au/recipe_asset/535/3635.jpg-20150515023316~q75,dx720y432u1r1gg,c--.jpg',
             [
                 new Ingredient('self-raising flour', 1),
-                new Ingredient('cocoa', 0.3),
+                new Ingredient('cocoa', 1),
                 new Ingredient('Caster sugar', 1),
-                new Ingredient('Butter', 0.3),
-                new Ingredient('Milk', 0.5),
+                new Ingredient('Butter', 3),
+                new Ingredient('Milk', 5),
                 new Ingredient('Eggs', 2),
             ]),
         new Recipe(
@@ -41,8 +44,31 @@ export class RecipeService {
         return this.recipes.slice();
     }
 
+    getRecipe(index: number) {
+        return this.recipes[index];
+    }
+
     addIngredientsToShoppingList(ingredients: Ingredient[]) {
         // Access shoppingListService and pass ingredients
         this.shoppingListService.addIngredients(ingredients);
+    }
+
+    addReceipe(recipe: Recipe) {
+        // Take the new recipe and push to array
+        this.recipes.push(recipe);
+        // Emit a new value of the recipes
+        this.recipesChanged.next(this.recipes.slice());
+    }
+
+    updateRecipe(index: number, newRecipe: Recipe) {
+        // Get index for existing recipe and replace it
+        this.recipes[index] = newRecipe;
+        // Emit a new value of the recipes
+        this.recipesChanged.next(this.recipes.slice());
+    }
+
+    deleteRecipe(index: number) {
+        this.recipes.splice(index, 1)
+        this.recipesChanged.next(this.recipes.slice())
     }
 }
