@@ -1,3 +1,4 @@
+import { AuthService } from './../auth/auth.service';
 import { Response } from '@angular/http';
 import { DataStorageService } from './../shared/data-storage.service';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +15,8 @@ export class HeaderComponent implements OnInit {
   // onSelect(feature: string){
   //   this.featureSelected.emit(feature)
   // }
-  constructor(private dataStorageService: DataStorageService) { }
+  constructor(private dataStorageService: DataStorageService,
+  private authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -29,5 +31,9 @@ export class HeaderComponent implements OnInit {
 
   onFetchData() {
     this.dataStorageService.fetchRecipes();
+  }
+
+  onLogout() {
+    this.authService.logout();
   }
 }

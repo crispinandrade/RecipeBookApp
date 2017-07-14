@@ -11,16 +11,23 @@
       </ul>
       <!--creating a dropdown in the navigation-->
       <ul class="nav navbar-nav navbar-right">
-        <!--Register-->
-        <li routerLinkActive="active"><a routerLink="/signup">Register</a></li>
+        <!--Display register and signin when not authenticated-->
+        <ng-template [ngIf]="!authService.isAuthenticated()">
+          <!--Register-->
+          <li routerLinkActive="active"><a routerLink="/signup">Register</a></li>
+          <!--Signin-->
+          <li routerLinkActive="active"><a routerLink="/signin">Login</a></li>
+        </ng-template>
+        
         <!--Manage dropdown-->
-        <li class="dropdown" appDropdown>
+        <li class="dropdown" appDropdown *ngIf="authService.isAuthenticated()">
           <a style="cursor: pointer;" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a style="cursor: pointer;" (click)="onSaveData()">Save Data</a></li>
             <li><a style="cursor: pointer;" (click)="onFetchData()">Fetch Data</a></li>
           </ul>
         </li>
+        <li><a style="cursor: pointer;" (click)="onLogout()" *ngIf="authService.isAuthenticated()">Logout</a></li>
       </ul>
     </div>
   </div>
