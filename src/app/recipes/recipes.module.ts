@@ -1,3 +1,4 @@
+import { RecipeNewComponent } from './recipe-new/recipe-new.component';
 import { SharedModule } from './../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -18,7 +19,8 @@ import { RecipesComponent } from './recipes.component';
       RecipeListComponent,
       RecipeEditComponent,
       RecipeDetailComponent,
-      RecipeItemComponent
+      RecipeItemComponent,
+      RecipeNewComponent
    ],
    imports: [
       CommonModule,
