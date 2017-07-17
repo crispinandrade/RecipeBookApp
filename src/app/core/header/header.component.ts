@@ -15,8 +15,8 @@ export class HeaderComponent implements OnInit {
   // onSelect(feature: string){
   //   this.featureSelected.emit(feature)
   // }
-  constructor(private dataStorageService: DataStorageService,
-  private authService: AuthService) { }
+  constructor(public dataStorageService: DataStorageService,
+  public authService: AuthService) { }
 
   ngOnInit() {
   }
